@@ -1,7 +1,8 @@
 #!/bin/bash
 sudo yum update -y
+sudo yum install git -y
 
-# Instala o Docker
+# Instala o Docker e configura o docker e docker-compose
 sudo amazon-linux-extras install docker
 sudo service docker start
 sudo usermod -aG docker ec2-user
