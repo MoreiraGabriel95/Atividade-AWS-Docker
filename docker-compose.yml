@@ -6,7 +6,7 @@ services:
     image: wordpress
     restart: always
     ports:
-      - 80:80
+      - 8080:80
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: exampleuser
@@ -14,6 +14,8 @@ services:
       WORDPRESS_DB_NAME: exampledb
     volumes:
       - wordpress:/var/www/html
+    depends_on:
+      - efs-mount
 
   db:
     image: mysql:5.7
@@ -26,6 +28,20 @@ services:
     volumes:
       - db:/var/lib/mysql
 
+  efs-mount:
+    image: amazonlinux:2
+    command: "true"
+    volumes:
+      - efs-mount:/mnt/efs
+    depends_on:
+      - db
+
 volumes:
   wordpress:
   db:
+  efs-mount:
+    driver_opts:
+      type: "nfs"
+      o: "addr=fs-001e495e5d4551534.efs.us-east-1.amazonaws.com,nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2"
+      device: ":/wordpress-config/efs"
+
