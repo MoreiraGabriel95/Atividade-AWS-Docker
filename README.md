@@ -49,21 +49,6 @@ services:
       - wordpress:/var/www/html
       - /wordpress-config/efs
 
-  db:
-    image: mysql:8.0
-    restart: always
-    environment:
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin123
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
-
-volumes:
-  wordpress:
-  db:" >> docker-compose.yml
-docker-compose -f docker-compose.yml up -d
 ```
 
 
