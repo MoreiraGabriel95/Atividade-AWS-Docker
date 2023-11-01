@@ -47,7 +47,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wordpress:/var/www/html
-      - /wordpress-config/efs
+      - /wordpress-config/efs"
 >> docker-compose.yml
 ```
 
