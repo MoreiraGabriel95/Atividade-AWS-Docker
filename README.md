@@ -48,7 +48,7 @@ services:
     volumes:
       - wordpress:/var/www/html
       - /wordpress-config/efs
-
+>> docker-compose.yml
 ```
 
 
