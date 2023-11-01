@@ -1,6 +1,5 @@
 #!/bin/bash
 sudo yum update -y
-sudo yum install git -y
 sudo amazon-linux-extras install docker -y
 sudo yum install mysql -y
 sudo service docker start
@@ -28,22 +27,7 @@ services:
       WORDPRESS_DB_USER: exampleuser
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
-    volumes:
-      - wordpress:/var/www/html
 
-  db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: examplepass
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
-    volumes:
-      - db:/var/lib/mysql
-
-volumes:
-  wordpress:
-  db:" >> docker-compose.yml
+" >> docker-compose.yml
 
 docker-compose -f docker-compose.yml up -d
